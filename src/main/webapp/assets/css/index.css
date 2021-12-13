@@ -4,6 +4,7 @@ main > h1 {font-size: 36px; margin-bottom: 30px;}
 .content_area{font-size: 0; width: 1250px;}
 .content_area > div{
     display: inline-block; vertical-align: top;
+    position: relative;
     width: 230px; height: 200px; padding: 20px;
     background-color: #fff; font-size: 16px; 
     margin-left: 20px; border-radius: 10px;
@@ -26,7 +27,7 @@ main > h1 {font-size: 36px; margin-bottom: 30px;}
 }
 .content_area > div p:last-child{
     font-size: 12px; color: #999;
-    position: absolute; top: 1;
+    position: absolute; top: 210px;
 }
 .content_area > div p:last-child span{
     font-weight: 400;
