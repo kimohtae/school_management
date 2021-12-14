@@ -23,4 +23,14 @@
     <select id="getDepartmentInfoBySeq" resultType="com.greenart.school_management.data.DepartmentVO">
         select * from department_info where di_seq = #{seq}
     </select>
+    <select id="selectLatestDataSeq" resultType="java.lang.Integer">
+        select di_seq from department_info di 
+        order by di_seq desc limit 1
+    </select>
+    <insert id="insertDepartmentHistory">
+        insert into department_history(deph_type,deph_content,deph_di_seq)
+        values(#{deph_type},#{deph_content},#{deph_di_seq})
+    </insert>
+
+
 </mapper>
