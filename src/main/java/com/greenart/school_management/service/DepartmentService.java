@@ -17,12 +17,27 @@ public class DepartmentService {
     @Autowired
     DepartmentMapper mapper;
 
-    public Map<String, Object> getDepartmentList(Integer offset){
-        if(offset==null) offset=0;
+    public Map<String, Object> getDepartmentList(Integer offset, String keyword){
         Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
-        List<DepartmentVO> list = mapper.getDepartmentInfo(offset);
 
-        Integer cnt = mapper.getDepartmentCount();
+        if(offset==null){
+            offset=0;
+            resultMap.put("offset", offset);
+        }
+        
+        if(keyword==null){
+            keyword = "%%";
+            resultMap.put("keyword", "");
+            
+        } else{
+            resultMap.put("keyword", keyword);
+            
+            keyword = "%" + keyword + "%"; 
+        }
+            
+        List<DepartmentVO> list = mapper.getDepartmentInfo(offset,keyword);
+
+        Integer cnt = mapper.getDepartmentCount(keyword);
         Integer page_cnt = cnt/10 + (cnt%10>0 ? 1:0);
         
         resultMap.put("status", true);
@@ -54,6 +69,28 @@ public class DepartmentService {
         
         return resultMap;
     }
+    public Map<String, Object> updateDepartment(DepartmentVO data){
+        Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
+
+        
+        if(data.getDi_name()==null || data.getDi_name().equals("")){
+            resultMap.put("status",false);
+            resultMap.put("message","학과명을 입력하세요.");
+            return resultMap;
+        }
+        
+        if(data.getDi_gratuate_score()==null || data.getDi_gratuate_score()==0){
+            resultMap.put("status",false);
+            resultMap.put("message","졸업학점을 입력하세요.");
+            return resultMap;
+        }
+        mapper.updateDepartment(data);
+        
+        resultMap.put("status",true);
+        resultMap.put("message","학과 정보가 변경되었습니다.");
+        
+        return resultMap;
+    }
     
     public Map<String, Object> deleteDepartment(Integer seq){
         Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
@@ -61,5 +98,12 @@ public class DepartmentService {
         resultMap.put("status",true);
         resultMap.put("message","학과가 삭제되었습니다.");
         return resultMap;
+    }
+
+    public Map<String,Object> getDepartmentInfoBySeq(Integer seq){
+        Map<String,Object> resultmap = new LinkedHashMap<String, Object>();
+        resultmap.put("status",true);
+        resultmap.put("data",mapper.getDepartmentInfoBySeq(seq));
+        return resultmap;
     }
 }

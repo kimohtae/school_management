@@ -13,6 +13,7 @@
 
 </head>
 <body>
+    
     <main>
         <h1><i class="fas fa-school"></i>학과 관리</h1>
         <button id="add_department"><i class="fas fa-plus-circle"></i>학과 추가</button>
@@ -62,7 +63,7 @@
                 <button id="prev"><i class="fas fa-chevron-left"></i></button>
                 <div class="pagers">
                     <c:forEach begin="1" end="${data.page}" var="i">
-                        <a href="/department?offset=${(i-1)*10}">${i}</a>
+                        <a href="/department?offset=${(i-1)*10}&keyword=${data.keyword}">${i}</a>
                     </c:forEach>
                 </div>
                 <button id="next"><i class="fas fa-chevron-right"></i></button>
@@ -87,6 +88,7 @@
             </div>
             <div class="btn_area">
                 <button id="add_dep">등록하기</button>
+                <button id="modify_dep">수정하기</button>
                 <button id="cancel_dep">취소하기</button>
             </div>
         </div>

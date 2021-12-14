@@ -2,6 +2,8 @@ package com.greenart.school_management.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import com.greenart.school_management.service.DepartmentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +19,15 @@ public class DepartmentController {
     DepartmentService service;
     
     @GetMapping("/department")
-    public String getDepartment(Model model, @RequestParam @Nullable Integer offset){
-        Map<String, Object> resultMap = service.getDepartmentList(offset);
+    public String getDepartment(
+        Model model, 
+        @RequestParam @Nullable Integer offset,
+        @RequestParam @Nullable String keyword,
+        HttpSession session
+        ){
+        Map<String, Object> resultMap = service.getDepartmentList(offset,keyword);
         model.addAttribute("data", resultMap);
+        
         return "/department/list";
     }
 

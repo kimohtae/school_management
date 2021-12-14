@@ -3,16 +3,24 @@
 
 <mapper namespace="com.greenart.school_management.mapper.DepartmentMapper">
     <select id="getDepartmentInfo" resultType="com.greenart.school_management.data.DepartmentVO">
-        select * from department_info order by di_seq desc limit 10 offset #{offset}
+        select * from department_info where di_name like #{keyword}
+        order by di_seq desc limit 10 offset #{offset}
     </select>
     <select id="getDepartmentCount" resultType="java.lang.Integer">
-        select count(*) from department_info
+        select count(*) from department_info where di_name like #{keyword}
     </select>
     <insert id="addDepartment">
         insert into department_info(di_name, di_gratuate_score, di_status)
         values (#{di_name}, #{di_gratuate_score}, #{di_status})
     </insert>
+    <update id="updateDepartment">
+        update department_info set di_name=#{di_name}, di_gratuate_score=#{di_gratuate_score}, di_status=#{di_status}, di_mod_dt=NOW()
+        where di_seq = #{di_seq}
+    </update>
     <delete id="deleteDepartment">
         delete from department_info where di_seq=#{seq}
     </delete>
+    <select id="getDepartmentInfoBySeq" resultType="com.greenart.school_management.data.DepartmentVO">
+        select * from department_info where di_seq = #{seq}
+    </select>
 </mapper>
