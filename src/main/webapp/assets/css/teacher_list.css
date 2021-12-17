@@ -1,33 +1,84 @@
 /* teacher_list.css */
-.popup_wrap{
-    position: fixed; width: 100vW; height: 100vh; left: 0; top: 0;
-    background-color: rgba(0,0,0,0.5); display: none;
-}
-.popup_wrap.open{display: block;}
+
 .popup{
-    position: absolute;
-    left: 50%; top: 50%;
-    background-color: #fff; z-index: 99999;
-    margin-left: -250px; margin-top: -250px;
-    padding: 45px 0; width: 500px; border-radius:5px;
-    box-shadow: 0 0 3px rgba(0,0,0,0.5);
-}
-.popup .top_area{
-    text-align: center; padding-bottom: 40px;
-    border-bottom: 1px solid rgb(0, 0, 0);
-}
-.popup .ico{
-    width: 80px; height: 80px; text-align: center;
-    background-color: #666; color: #fff; 
-    font-size: 36px; line-height: 70px;
-    border-radius: 999px; display: inline-block;
-} 
-.popup .top_area h2{
-    margin-top: 20px; font-size: 24px;
-}
-.popup .top_area p{
-    margin-top: 10px; color: #555;
+    margin-top: -300px; width: 470px;
 }
 .popup .content_area{
-    padding: 40px 0; width: 350px; margin: 0 auto; font-size: 0;
+    width: 90%;
+}
+
+.popup .content_area input, .popup .content_area button{
+    width: calc(50% - 10px); padding: 0; margin: 0; border:1px solid #ccc; 
+    font-size: 14px; font-weight: 400; padding: 5px 15px; box-sizing: border-box;
+    border-radius: 15px; margin-bottom: 10px; outline: none; margin: 5px;
+}
+
+
+
+.popup .content_area #teacher_dep_name{width: calc(70% - 10px);}
+.popup .content_area #search_dep{width: calc(30% - 10px);}
+.popup .content_area #teacher_email{width: calc(70% - 10px);}
+.popup .content_area #teacher_status{width: calc(30% - 10px); margin: 5px;}
+
+#teacher_status{
+    width: 150px; border-radius: 15px; border: 1px solid #ccc; padding: 5px 15px;
+}
+.department_search{
+    position: fixed; z-index: 999999999;
+    background-color: #fff; left: 50%; margin-left: -200px;
+    top: 50%; margin-top: -200px; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    width: 350px; display: none;
+}
+#search_type{
+    border: none; padding-right: 5px; margin-right: 5px; outline: none;
+}
+.dep_search_box{
+    padding: 0 10px; font-size: 0; border-bottom: 1px solid #000;
+}
+.dep_search_box *{
+    font-size: 18ox;
+}
+.dep_search_box input{
+    border: 0; padding: 0; margin: 0; outline: none; width: 95%;
+    padding: 10px 0;
+}
+.dep_search_box button{
+    border: 0; padding: 0; margin: 0; outline: none; cursor: pointer;
+    position: absolute; right: 10px; top: 9px; background-color: transparent;
+    color: #666;
+}
+.search_result{
+    min-height: 300px; overflow-y: scroll; height: 300px;
+}
+.search_result ul li{
+    padding: 10px;
+}
+.search_result a{
+    text-decoration: none; color: #555;
+}
+.search_result a:hover{
+    text-decoration: underline; color: #333; font-weight: 700;
+}
+.search_result span{
+    font-size: 12px; display: inline-block; vertical-align: middle; padding: 5px 10px;
+    margin-left: 10px; color: #fff;  border-radius: 20px;
+}
+.search_result .status1{background-color: rgb(58,226,27);}
+.search_result .status2{background-color: rgb(251,186,64);}
+.search_result .status3{background-color: rgb(255,110,26);}
+.search_result .status4{background-color: rgb(255,23,23);}
+
+.dep_search_buttons{
+    text-align: center; padding: 10px; 
+    background-color: #f3f3f3; color: #fff;
+}
+#dep_search_close{
+    bottom: 0; background-color: #666;color: #fff;
+    border-radius: 3px; width: 80px; height: 30px; cursor: pointer;
+}
+
+.teacher_status span{
+    display: inline-block; padding: 5px 10px; color: #fff;
+    font-size: 12px; border-radius: 3px;
 }

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.greenart.school_management.service.DepartmentService;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
@@ -24,9 +25,11 @@ public class DepartmentController {
         @RequestParam @Nullable Integer offset,
         @RequestParam @Nullable String keyword,
         HttpSession session
-        ){
+        ) throws Exception{
         Map<String, Object> resultMap = service.getDepartmentList(offset,keyword);
         model.addAttribute("data", resultMap);
+            
+        
         
         return "/department/list";
     }

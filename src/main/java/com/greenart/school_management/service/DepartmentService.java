@@ -128,4 +128,19 @@ public class DepartmentService {
         resultmap.put("data",mapper.getDepartmentInfoBySeq(seq));
         return resultmap;
     }
+
+    public Map<String,Object> getDepartmentByKeyword(String keyword){
+        Map<String,Object> resultmap = new LinkedHashMap<String, Object>();
+        
+        if(keyword == null){
+            keyword = "%%";
+        }else{
+            keyword = "%" + keyword +"%";
+        }
+
+        List<DepartmentVO> list = mapper.getDepartmentByKeyword(keyword);
+        resultmap.put("status", true);
+        resultmap.put("list", list);
+        return resultmap;
+    }
 }
